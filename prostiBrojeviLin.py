@@ -1,5 +1,9 @@
-import concurrent.futures
+
 import math
+import time
+
+
+t1 = time.perf_counter()
 
 PRIMES = [
     112272535095293,
@@ -24,7 +28,13 @@ def prost_broj(n):
     return True
 
 
-with concurrent.futures.ProcessPoolExecutor(max_workers=4) as executor:
-    for number, prime in zip(PRIMES, executor.map(prost_broj, PRIMES)):
-        print('%d je prost broj: %s' % (number, prime))
+
+for i in PRIMES:
+    print(prost_broj(i))
+
+
+
+t2 = time.perf_counter()
+
+print(f'Zavrseno u {t2-t1} sekundi')
 
